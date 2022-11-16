@@ -8,7 +8,7 @@ def build_tree(t, branch_length, shorten_by, angle, real_world_coef=False):
     if branch_length > 5:
         t.forward(branch_length)
         if real_world_coef:
-            randomizer = random.randint(int(-branch_length*0.1), int(branch_length*0.1))
+            randomizer = random.randint(int(-branch_length*0.3), int(branch_length*0.3))
             # print(randomizer_left)
         else:
             randomizer = 0
@@ -19,6 +19,8 @@ def build_tree(t, branch_length, shorten_by, angle, real_world_coef=False):
         build_tree(t, new_length, shorten_by, angle, real_world_coef)
         t.left(angle)
         t.backward(branch_length)
+    else:
+        t.stamp()
 
 
 tree = turtle.Turtle()
@@ -28,7 +30,7 @@ tree.setheading(90)
 tree.penup()
 tree.goto(-400,0)
 
-for i in range(30):
+for i in range(10):
     # select color
     tree.color(random.choice(colors))
     # set the tree position in the forest and
@@ -39,3 +41,4 @@ for i in range(30):
     build_tree(tree, 70, 10, 20, True)
 
 turtle.mainloop()
+print("done")
