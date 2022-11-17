@@ -6,13 +6,17 @@ colors = ["black", "red", "green", "blue", "cyan", "yellow", "magenta", "orange"
 
 def build_tree(t, branch_length, shorten_by, angle, real_world_coef=False):
     if branch_length > 5:
+        size = int(branch_length / 10)
+        t.pensize(size)
         t.forward(branch_length)
         if real_world_coef:
-            randomizer = random.randint(int(-branch_length*0.3), int(branch_length*0.3))
+            randomizer = random.randint(int(-branch_length*0.2), int(branch_length*0.2))
             # print(randomizer_left)
         else:
             randomizer = 0
         new_length = branch_length - shorten_by + randomizer
+        size = int(branch_length / 10)
+        t.pensize(size)
         t.left(angle)
         build_tree(t, new_length, shorten_by, angle, real_world_coef)
         t.right(angle * 2)
@@ -38,7 +42,7 @@ for i in range(10):
     tree.penup()
     tree.goto(int(tree.xcor()) + random.randint(20, 100), -200)
     tree.pendown()
-    build_tree(tree, 70, 10, 20, True)
+    build_tree(tree, 70, 15, 20, True)
 
 turtle.mainloop()
 print("done")
