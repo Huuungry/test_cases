@@ -1,4 +1,4 @@
-# Code to import test cases from xls document to the postgress db
+# Code to import test cases from xls document to the postgres db
 
 Environment configuration:
 
