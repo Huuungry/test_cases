@@ -24,6 +24,5 @@ def get_test_case_id_by_name(test_case_name):
     return result.ID
 
 
-# metadata = session.query(TestCasesMetadata).all()
-# details = session.query(TestCasesDetails).all()
-
+metadata = session.query(TestCasesMetadata).all()
+details = session.query(TestCasesDetails).all()
