@@ -4,9 +4,8 @@ from sql_api import set_test_cases_details, set_test_cases_metadata, get_test_ca
 
 # Read test cases from Excel file
 df = pd.read_excel('test_cases.xls')
-# Connect to the database using SQLAlchemy
 
-# Insert test case metadata into the database
+# Insert test case into the database
 current_test_case_name = ""
 for row in df.itertuples():
     try:
