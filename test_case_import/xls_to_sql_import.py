@@ -1,4 +1,3 @@
-import sql_api
 import pandas as pd
 from sql_api import set_test_cases_details, set_test_cases_metadata, get_test_case_id_by_name, session
 from model import *
