@@ -13,3 +13,14 @@ services:
       - "65432:5432"
     restart: always
 
+  web:
+    image: flask-app:latest
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+      network: "host"
+    environment:
+      DATABASE_SERVER: "db:5432"
+    ports:
+      - "8000:8000"
+    restart: always

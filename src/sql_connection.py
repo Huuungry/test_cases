@@ -1,10 +1,12 @@
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
 from model import Base
+from os import environ
 
 
-postgres = 'postgres://user:password@127.0.0.1:65432/test_cases'
+db_server = environ.get('DATABASE_SERVER', "127.0.0.1:65432")
 
+postgres = f"postgres://user:password@{db_server}/test_cases"
 
 def sql_connection():
     engine = create_engine(postgres, echo=False, pool_recycle=2)
@@ -19,7 +21,3 @@ def sql_connection():
 connection, meta, session, engine = sql_connection()
 metadata = MetaData()
 Base.metadata.create_all(engine)
-
-
-
-
