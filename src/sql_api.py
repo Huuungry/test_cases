@@ -38,6 +38,7 @@ def get_test_cases():
         test_case_metadata_dict["CASES"].append(object_as_dict(test_case))
     return json.dumps(test_case_metadata_dict)
 
+
 def get_test_case_details_by_name(test_case_name):
     test_case_metadata = session.query(TestCasesMetadata).filter(TestCasesMetadata.TEST_CASE_NAME == test_case_name)
     test_case_metadata_dict = object_as_dict(test_case_metadata.first())

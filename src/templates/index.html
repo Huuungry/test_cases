@@ -1,0 +1,80 @@
+<html>
+<head>
+  <title>Test Cases</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <h1>Test Cases</h1>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Test Case Name</th>
+      <th>Precondition</th>
+      <th>Attachments</th>
+      <th>Priority</th>
+    </tr>
+    <tbody id="testCasesTableBody"></tbody>
+  </table>
+
+  <script>
+    // JSON data
+    var jsonData = {{ jsonData|safe }}
+
+    // Get the table body element
+    var tableBody = document.getElementById("testCasesTableBody");
+
+    // Iterate over the test cases and create table rows
+    for (var i = 0; i < jsonData.CASES.length; i++) {
+      var testCase = jsonData.CASES[i];
+
+      var row = document.createElement("tr");
+
+      var idCell = document.createElement("td");
+      idCell.textContent = testCase.ID;
+      row.appendChild(idCell);
+
+      var nameCell = document.createElement("td");
+      var link = document.createElement("a");
+      link.href = window.location.protocol + '//' + window.location.hostname + ":" + window.location.port + window.location.pathname + '//' + encodeURIComponent(testCase.TEST_CASE_NAME)
+      link.textContent = testCase.TEST_CASE_NAME;
+      nameCell.appendChild(link);
+      row.appendChild(nameCell);
+
+      var preconditionCell = document.createElement("td");
+      preconditionCell.textContent = testCase.PRECONDITION;
+      row.appendChild(preconditionCell);
+
+      var attachmentsCell = document.createElement("td");
+      attachmentsCell.textContent = testCase.ATTACHMENTS;
+      row.appendChild(attachmentsCell);
+
+      var priorityCell = document.createElement("td");
+      priorityCell.textContent = testCase.PRIORITY;
+      row.appendChild(priorityCell);
+
+      tableBody.appendChild(row);
+    }
+  </script>

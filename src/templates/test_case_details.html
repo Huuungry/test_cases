@@ -1,0 +1,107 @@
+<html>
+<head>
+  <title>Test Case Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <h1>Test Case Details</h1>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Test Case Name</th>
+    </tr>
+    <tbody id="testCaseTableBody"></tbody>
+  </table>
+
+  <h2>Test Case Steps</h2>
+
+  <table>
+    <tr>
+      <th>Step Number</th>
+      <th>Description</th>
+      <th>Expected Result</th>
+      <th>Actual Result</th>
+      <th>Status</th>
+    </tr>
+    <tbody id="testCaseStepsTableBody"></tbody>
+  </table>
+
+<script>
+    // JSON data
+  var testCaseData = {{ jsonData|safe }}
+
+// Get the table body elements
+var testCaseTableBody = document.getElementById("testCaseTableBody");
+var testCaseStepsTableBody = document.getElementById("testCaseStepsTableBody");
+
+// Display test case details
+var testCaseRow = document.createElement("tr");
+
+var testCaseIdCell = document.createElement("td");
+testCaseIdCell.textContent = testCaseData.ID;
+testCaseRow.appendChild(testCaseIdCell);
+
+var testCaseNameCell = document.createElement("td");
+testCaseNameCell.textContent = testCaseData.TEST_CASE_NAME;
+testCaseRow.appendChild(testCaseNameCell);
+
+testCaseTableBody.appendChild(testCaseRow);
+
+// Display test case steps
+for (var i = 0; i < testCaseData.STEPS.length; i++) {
+  var step = testCaseData.STEPS[i];
+
+  var stepRow = document.createElement("tr");
+
+  var stepNumberCell = document.createElement("td");
+  stepNumberCell.textContent = step.STEP_NUMBER;
+  stepRow.appendChild(stepNumberCell);
+
+  var descriptionCell = document.createElement("td");
+  descriptionCell.textContent = step.DESCRIPTION;
+  stepRow.appendChild(descriptionCell);
+
+  var expectedResultCell = document.createElement("td");
+  expectedResultCell.textContent = step.EXPECTED_RESULT;
+  stepRow.appendChild(expectedResultCell);
+
+  var actualResultCell = document.createElement("td");
+  actualResultCell.textContent = step.ACTUAL_RESULT;
+  stepRow.appendChild(actualResultCell);
+
+  var statusCell = document.createElement("td");
+  statusCell.textContent = step.STATUS;
+
+  if (step.STATUS === "Passed") {
+    statusCell.style.color = "green";
+  } else if (step.STATUS === "Failed") {
+    statusCell.style.color = "red";
+  }
+
+  stepRow.appendChild(statusCell);
+
+  testCaseStepsTableBody.appendChild(stepRow);
+}  </script>
