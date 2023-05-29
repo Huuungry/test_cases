@@ -1,4 +1,4 @@
-# Code to import test cases from xls document to the postgres db and provide CLI and REST api to it
+# Code to import test cases from xls document to the postgres db, provide CLI and REST api to return test case data in JSON, and Web UI to retrieve test case data
 
 Environment configuration:
 
@@ -10,4 +10,4 @@ Environment configuration:
 Usage:
 
 1. Use `python3 src/query_details.py` to query test case details from CLI. Running without parameters provides list of all test cases and if you specify test case name as parameter it will provide test_case details. E.g. `python3 src/query_details.py "Login positive test"`
-2. Use "http://localhost:8000/cases" URL to obtain test cases details from Web API. E.g. `curl "http://localhost:8000/cases"` to list all test cases and `curl "http://localhost:8000/cases/Login%20positive%20test"` to get specific test case details. Remember that spaces in test case name should be URL encoded (e.g. %20).
+2. Use "http://localhost:8000/api/test_cases" URL to obtain test cases details from Web API. E.g. `curl "http://localhost:8000/cases"` to list all test cases and `curl "http://localhost:8000/api/test_cases/Login%20positive%20test"` to get specific test case details. Remember that spaces in test case name should be URL encoded (e.g. %20).
